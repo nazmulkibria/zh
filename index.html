@@ -1,126 +1,496 @@
 <!DOCTYPE html>
-<html>
-<title>Zaheen's Cake</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-<link rel="icon" href="/images/favicon.ico" type="image/ico" sizes="16x16 32x32 128x128">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
-</style>
-<style>
-* {
-  box-sizing: border-box;
-}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Zaheen's Cake - Delicious Homemade Cakes in Dhaka</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" sizes="16x16 32x32 128x128">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@400;600;700&display=swap">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #fff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+        body {
+            font-family: "Karma", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-}
-</style>
-<body><!-- Messenger Chat plugin Code -->
+        /* Mobile-first approach */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Enhanced Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-light);
+            box-shadow: 0 2px 10px var(--shadow);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .social-link {
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .social-link img {
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            object-fit: contain;
+        }
+
+        /* Sidebar with smooth animations */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: min(85vw, 400px);
+            height: 100vh;
+            background: var(--bg-light);
+            box-shadow: 2px 0 20px var(--shadow);
+            z-index: 2000;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background: #f8f8f8;
+            padding-left: 2rem;
+        }
+
+        .sidebar-item.close-btn {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: clamp(70px, 15vw, 100px);
+            padding: 2rem 1rem;
+        }
+
+        /* Responsive Facebook Page Embed */
+        .fb-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            overflow: hidden;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+            padding: 1rem;
+        }
+
+        .fb-page {
+            width: 100% !important;
+        }
+
+        .fb-page,
+        .fb-page span,
+        .fb-page iframe {
+            width: 100% !important;
+        }
+
+        /* Facebook Messenger Plugin Responsive */
+        .fb-customerchat iframe {
+            bottom: 20px !important;
+            right: 20px !important;
+        }
+
+        @media screen and (max-width: 600px) {
+            .fb-container {
+                padding: 0.5rem;
+                margin: 0 auto 2rem;
+            }
+
+            .fb-customerchat iframe {
+                bottom: 10px !important;
+                right: 10px !important;
+            }
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .grid-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 2rem;
+        }
+
+        .footer h5 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer a:hover {
+            border-bottom-color: white;
+        }
+
+        /* Tablet styles */
+        @media screen and (min-width: 600px) {
+            .main-content {
+                padding: 3rem 2rem;
+            }
+
+            .grid {
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop styles */
+        @media screen and (min-width: 992px) {
+            .sidebar {
+                width: 400px;
+            }
+
+            .main-content {
+                padding: 4rem 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large desktop optimization */
+        @media screen and (min-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .top-nav, .sidebar, .menu-toggle, .fb-container {
+                display: none;
+            }
+
+            .main-content {
+                margin-top: 0;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Facebook SDK -->
     <div id="fb-root"></div>
 
-    <!-- Your Chat plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
+    <!-- Facebook Messenger Chat Plugin -->
+    <div id="fb-customer-chat" class="fb-customerchat"></div>
 
     <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "117000080221686");
-      chatbox.setAttribute("attribution", "biz_inbox");
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "117000080221686");
+        chatbox.setAttribute("attribution", "biz_inbox");
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v11.0'
-        });
-      };
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
-  
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="6LQlVMVt"></script>
 
-<!-- Sidebar (hidden by default) -->
-<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()"
-  class="w3-bar-item w3-button">Close Menu</a>
-  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Food</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
-</nav>
+    <!-- Facebook SDK for Page Plugin -->
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0"
+            nonce="6LQlVMVt"></script>
 
-<!-- Top menu -->
-<div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">&#9776;</div>
-    <div class="w3-right w3-padding-16"><a href="https://fb.me/zhcake"><img src="/images/FB-button.png" width="50" height="50"/></a></div>
-    <div class="w3-center w3-padding-16">Cakes</div>
-  </div>
-</div>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<!-- !PAGE CONTENT! -->
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+        <a href="#" class="sidebar-item close-btn" onclick="closeSidebar()">✕ Close Menu</a>
+        <a href="#food" class="sidebar-item" onclick="closeSidebar()">🍰 Our Cakes</a>
+        <a href="#about" class="sidebar-item" onclick="closeSidebar()">ℹ️ About Us</a>
+        <a href="#contact" class="sidebar-item" onclick="closeSidebar()">📞 Contact</a>
+    </nav>
 
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <div class="nav-content">
+            <button class="menu-toggle" onclick="openSidebar()" aria-label="Open menu">☰</button>
+            <div class="logo">Zaheen's Cake</div>
+            <a href="https://fb.me/zhcake" class="social-link" target="_blank" rel="noopener" aria-label="Visit our Facebook page">
+                <img src="/images/FB-button.png" alt="Facebook" loading="lazy">
+            </a>
+        </div>
+    </header>
 
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+    <!-- Main Content -->
+    <main class="main-content container">
+        <!-- Facebook Page Embed -->
+        <div class="fb-container">
+            <div class="fb-page"
+                 data-href="https://www.facebook.com/zhcake/"
+                 data-tabs="timeline"
+                 data-width="500"
+                 data-height=""
+                 data-small-header="false"
+                 data-adapt-container-width="true"
+                 data-hide-cover="false"
+                 data-show-facepile="false">
+                <blockquote cite="https://www.facebook.com/zhcake/" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/zhcake/">Zaheen's Cake</a>
+                </blockquote>
+            </div>
+        </div>
 
-<div class="fb-page" data-href="https://www.facebook.com/zhcake/" data-tabs="timeline" data-width="500" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/zhcake/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/zhcake/">Zaheen&#039;s Cake</a></blockquote></div>
+        <!-- Content Grid -->
+        <section id="food" class="grid">
+            <div class="grid-item">
+                <h3>🎂 Custom Cakes</h3>
+                <p>Beautifully crafted custom cakes for your special occasions</p>
+            </div>
+            <div class="grid-item">
+                <h3>🍰 Birthday Specials</h3>
+                <p>Make birthdays memorable with our delicious creations</p>
+            </div>
+            <div class="grid-item">
+                <h3>🎉 Event Cakes</h3>
+                <p>Perfect cakes for weddings, anniversaries, and celebrations</p>
+            </div>
+        </section>
+    </main>
 
-<div class="row">
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div>
+                <h5>About Us</h5>
+                <p>For ordering delicious homemade cakes in Dhaka city, we bring sweetness to your celebrations!</p>
+            </div>
+            <div>
+                <h5>Contact Information</h5>
+                <p>📞 Call: <a href="tel:01670236621">01670236621</a></p>
+                <p>📱 Facebook: <a href="https://fb.me/zhcake" target="_blank" rel="noopener">fb.me/zhcake</a></p>
+            </div>
+            <div>
+                <h5>Service Area</h5>
+                <p>🚚 Delivery available within Dhaka city</p>
+                <p>⏰ Order in advance for best results</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
+            <p>© 2024 Zaheen's Cake. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="w3-row-padding w3-padding-32">
-    <div class="w3-third">
-      <h5></h5>
-      <p>For ordering delicious cakes...(only in dhaka city)</p>
-      <p>Facebook page: <a href="https://fb.me/zhcake" target="_blank">fb.me/zhcake</a></p>
-      <p>Call: 01670236621</p>
-      <p>Powered by <a href="https://fb.me/zhcake" target="_blank">Zaheen's Cake</a></p>
-    </div>
+    <script>
+        // Sidebar functionality
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('sidebarOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-  </footer>
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-</div>
+        // Close sidebar on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        });
 
-<!-- End page content -->
-</div>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
 
-<script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
+        // Hide nav on scroll down, show on scroll up
+        let lastScroll = 0;
+        const nav = document.querySelector('.top-nav');
 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-</script>
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
 
+            if (currentScroll <= 0) {
+                nav.style.transform = 'translateY(0)';
+                return;
+            }
+
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                nav.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
 </body>
 </html>

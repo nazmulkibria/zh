@@ -1,496 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Zaheen's Cake - Delicious Homemade Cakes in Dhaka</title>
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" sizes="16x16 32x32 128x128">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@400;600;700&display=swap">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zaheen's Cake — Homemade Cakes in Dhaka</title>
+  <meta name="description" content="Homemade custom, birthday and event cakes, baked to order and delivered across Dhaka city. Call 01670-236621 to order.">
+  <meta name="theme-color" content="#A8325A">
+  <link rel="canonical" href="https://zhcakes.com/">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
 
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #fff;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
+  <!-- Social sharing preview (Facebook / WhatsApp) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zaheen's Cake — Homemade Cakes in Dhaka">
+  <meta property="og:description" content="Custom, birthday and event cakes baked to order. Delivery across Dhaka city.">
+  <meta property="og:url" content="https://zhcakes.com/">
+  <meta property="og:image" content="https://zhcakes.com/images/og-cover.jpg">
 
-        body {
-            font-family: "Karma", sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=Hind+Siliguri:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
-        /* Mobile-first approach */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Enhanced Navigation */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-light);
-            box-shadow: 0 2px 10px var(--shadow);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            position: relative;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--text-dark);
-            padding: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .logo {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 700;
-            color: var(--primary-color);
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .social-link {
-            transition: transform 0.3s ease;
-        }
-
-        .social-link:hover {
-            transform: scale(1.1);
-        }
-
-        .social-link img {
-            width: clamp(40px, 8vw, 50px);
-            height: clamp(40px, 8vw, 50px);
-            object-fit: contain;
-        }
-
-        /* Sidebar with smooth animations */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: min(85vw, 400px);
-            height: 100vh;
-            background: var(--bg-light);
-            box-shadow: 2px 0 20px var(--shadow);
-            z-index: 2000;
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .sidebar-item {
-            display: block;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: background 0.3s ease, padding-left 0.3s ease;
-        }
-
-        .sidebar-item:hover {
-            background: #f8f8f8;
-            padding-left: 2rem;
-        }
-
-        .sidebar-item.close-btn {
-            background: var(--primary-color);
-            color: white;
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: clamp(70px, 15vw, 100px);
-            padding: 2rem 1rem;
-        }
-
-        /* Responsive Facebook Page Embed */
-        .fb-container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto 3rem;
-            overflow: hidden;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px var(--shadow);
-            padding: 1rem;
-        }
-
-        .fb-page {
-            width: 100% !important;
-        }
-
-        .fb-page,
-        .fb-page span,
-        .fb-page iframe {
-            width: 100% !important;
-        }
-
-        /* Facebook Messenger Plugin Responsive */
-        .fb-customerchat iframe {
-            bottom: 20px !important;
-            right: 20px !important;
-        }
-
-        @media screen and (max-width: 600px) {
-            .fb-container {
-                padding: 0.5rem;
-                margin: 0 auto 2rem;
-            }
-
-            .fb-customerchat iframe {
-                bottom: 10px !important;
-                right: 10px !important;
-            }
-        }
-
-        /* Grid System */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .grid-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .grid-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow);
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-            gap: 2rem;
-        }
-
-        .footer h5 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .footer p {
-            margin: 0.5rem 0;
-            line-height: 1.8;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .footer a:hover {
-            border-bottom-color: white;
-        }
-
-        /* Tablet styles */
-        @media screen and (min-width: 600px) {
-            .main-content {
-                padding: 3rem 2rem;
-            }
-
-            .grid {
-                gap: 2rem;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Desktop styles */
-        @media screen and (min-width: 992px) {
-            .sidebar {
-                width: 400px;
-            }
-
-            .main-content {
-                padding: 4rem 2rem;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Large desktop optimization */
-        @media screen and (min-width: 1400px) {
-            .container {
-                max-width: 1400px;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .top-nav, .sidebar, .menu-toggle, .fb-container {
-                display: none;
-            }
-
-            .main-content {
-                margin-top: 0;
-            }
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Zaheen's Cake",
+    "url": "https://zhcakes.com/",
+    "telephone": "+8801670236621",
+    "areaServed": "Dhaka",
+    "sameAs": ["https://www.facebook.com/zhcake"]
+  }
+  </script>
 </head>
 <body>
-    <!-- Facebook SDK -->
-    <div id="fb-root"></div>
+  <a class="skip" href="#cakes">Skip to cakes</a>
 
-    <!-- Facebook Messenger Chat Plugin -->
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Zaheen's Cake home">
+        <img src="images/logo.svg" alt="" width="36" height="36">
+        <span>Zaheen's Cake</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#cakes">Cakes</a>
+        <a href="#order">How to order</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-small header-call" href="tel:+8801670236621">Call 01670-236621</a>
+      <button class="menu-btn" id="menuBtn" aria-controls="nav" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "117000080221686");
-        chatbox.setAttribute("attribution", "biz_inbox");
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                xfbml: true,
-                version: 'v11.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <!-- Facebook SDK for Page Plugin -->
-    <script async defer crossorigin="anonymous"
-            src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0"
-            nonce="6LQlVMVt"></script>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
-        <a href="#" class="sidebar-item close-btn" onclick="closeSidebar()">✕ Close Menu</a>
-        <a href="#food" class="sidebar-item" onclick="closeSidebar()">🍰 Our Cakes</a>
-        <a href="#about" class="sidebar-item" onclick="closeSidebar()">ℹ️ About Us</a>
-        <a href="#contact" class="sidebar-item" onclick="closeSidebar()">📞 Contact</a>
-    </nav>
-
-    <!-- Top Navigation -->
-    <header class="top-nav">
-        <div class="nav-content">
-            <button class="menu-toggle" onclick="openSidebar()" aria-label="Open menu">☰</button>
-            <div class="logo">Zaheen's Cake</div>
-            <a href="https://fb.me/zhcake" class="social-link" target="_blank" rel="noopener" aria-label="Visit our Facebook page">
-                <img src="/images/FB-button.png" alt="Facebook" loading="lazy">
-            </a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="hero-bn" lang="bn">ঢাকায় ঘরে তৈরি কেক</p>
+          <h1>Homemade cakes, baked to order in Dhaka.</h1>
+          <p class="lead">Custom, birthday and celebration cakes — made in our home kitchen for your day, and delivered across Dhaka city.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#cakes">See our cakes</a>
+            <a class="btn btn-ghost" href="https://wa.me/8801670236621?text=Hi%20Zaheen's%20Cake%2C%20I'd%20like%20to%20order%20a%20cake" target="_blank" rel="noopener">Message on WhatsApp</a>
+          </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content container">
-        <!-- Facebook Page Embed -->
-        <div class="fb-container">
-            <div class="fb-page"
-                 data-href="https://www.facebook.com/zhcake/"
-                 data-tabs="timeline"
-                 data-width="500"
-                 data-height=""
-                 data-small-header="false"
-                 data-adapt-container-width="true"
-                 data-hide-cover="false"
-                 data-show-facepile="false">
-                <blockquote cite="https://www.facebook.com/zhcake/" class="fb-xfbml-parse-ignore">
-                    <a href="https://www.facebook.com/zhcake/">Zaheen's Cake</a>
-                </blockquote>
-            </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="dome" id="heroDome"></div>
+          <div class="dome-plate"></div>
         </div>
+      </div>
+      <svg class="frosting" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V20C1410 20 1410 52 1380 52S1350 20 1320 20 1290 46 1260 46 1230 20 1200 20 1170 56 1140 56 1110 20 1080 20 1050 44 1020 44 990 20 960 20 930 54 900 54 870 20 840 20 810 42 780 42 750 20 720 20 690 56 660 56 630 20 600 20 570 46 540 46 510 20 480 20 450 52 420 52 390 20 360 20 330 44 300 44 270 20 240 20 210 56 180 56 150 20 120 20 90 46 60 46 30 20 0 20Z"/>
+      </svg>
+    </section>
 
-        <!-- Content Grid -->
-        <section id="food" class="grid">
-            <div class="grid-item">
-                <h3>🎂 Custom Cakes</h3>
-                <p>Beautifully crafted custom cakes for your special occasions</p>
-            </div>
-            <div class="grid-item">
-                <h3>🍰 Birthday Specials</h3>
-                <p>Make birthdays memorable with our delicious creations</p>
-            </div>
-            <div class="grid-item">
-                <h3>🎉 Event Cakes</h3>
-                <p>Perfect cakes for weddings, anniversaries, and celebrations</p>
-            </div>
-        </section>
-    </main>
+    <!-- WHAT WE BAKE -->
+    <section class="kinds wrap" aria-labelledby="kindsTitle">
+      <h2 id="kindsTitle" class="section-title">What we bake</h2>
+      <div class="kinds-grid">
+        <button class="kind" data-filter="custom">
+          <span class="kind-img" data-cat="custom"></span>
+          <span class="kind-name">Custom cakes</span>
+          <span class="kind-note">Your theme, colours and message</span>
+        </button>
+        <button class="kind" data-filter="birthday">
+          <span class="kind-img" data-cat="birthday"></span>
+          <span class="kind-name">Birthday cakes</span>
+          <span class="kind-note">For kids and grown-ups alike</span>
+        </button>
+        <button class="kind" data-filter="event">
+          <span class="kind-img" data-cat="event"></span>
+          <span class="kind-name">Event cakes</span>
+          <span class="kind-note">Weddings, aqd, anniversaries</span>
+        </button>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-content">
-            <div>
-                <h5>About Us</h5>
-                <p>For ordering delicious homemade cakes in Dhaka city, we bring sweetness to your celebrations!</p>
-            </div>
-            <div>
-                <h5>Contact Information</h5>
-                <p>📞 Call: <a href="tel:01670236621">01670236621</a></p>
-                <p>📱 Facebook: <a href="https://fb.me/zhcake" target="_blank" rel="noopener">fb.me/zhcake</a></p>
-            </div>
-            <div>
-                <h5>Service Area</h5>
-                <p>🚚 Delivery available within Dhaka city</p>
-                <p>⏰ Order in advance for best results</p>
-            </div>
+    <!-- GALLERY -->
+    <section class="gallery-section" id="cakes" aria-labelledby="galleryTitle">
+      <div class="wrap">
+        <div class="gallery-head">
+          <h2 id="galleryTitle" class="section-title">Cakes we've made</h2>
+          <div class="chips" role="group" aria-label="Filter cakes">
+            <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="custom" aria-pressed="false">Custom</button>
+            <button class="chip" data-filter="birthday" aria-pressed="false">Birthday</button>
+            <button class="chip" data-filter="event" aria-pressed="false">Event</button>
+          </div>
         </div>
-        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
-            <p>© 2024 Zaheen's Cake. All rights reserved.</p>
+        <ul class="gallery" id="gallery"></ul>
+        <p class="gallery-empty" id="galleryEmpty" hidden>No cakes in this category yet — see more on our <a href="https://www.facebook.com/zhcake" target="_blank" rel="noopener">Facebook page</a>.</p>
+        <p class="gallery-more">Like one of these? Send us the photo and we'll make it yours. More designs on <a href="https://www.facebook.com/zhcake" target="_blank" rel="noopener">Facebook</a>.</p>
+      </div>
+    </section>
+
+    <!-- HOW TO ORDER (a real sequence, so numbered) -->
+    <section class="order wrap" id="order" aria-labelledby="orderTitle">
+      <h2 id="orderTitle" class="section-title">How to order</h2>
+      <ol class="steps">
+        <li>
+          <h3>Pick a design</h3>
+          <p>Choose a cake from our gallery or Facebook, or share your own idea or reference photo.</p>
+        </li>
+        <li>
+          <h3>Message or call us</h3>
+          <p>Tell us the date, size, flavour and any name or message for the top.</p>
+        </li>
+        <li>
+          <h3>Confirm your order</h3>
+          <p>We'll confirm the price and details. Order in advance — the earlier, the better.</p>
+        </li>
+        <li>
+          <h3>Enjoy it</h3>
+          <p>We deliver anywhere in Dhaka city, fresh on the day you need it.</p>
+        </li>
+      </ol>
+      <div class="order-cta">
+        <a class="btn" href="tel:+8801670236621">Call 01670-236621</a>
+        <a class="btn btn-ghost" href="https://m.me/zhcake" target="_blank" rel="noopener">Message on Messenger</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap about-grid">
+        <div class="about-img" id="aboutImg" aria-hidden="true"></div>
+        <div class="about-copy">
+          <h2 id="aboutTitle" class="section-title">About Zaheen's Cake</h2>
+          <p>Zaheen's Cake is a home bakery in Dhaka. Every cake is baked to order in our own kitchen — nothing sits on a shelf waiting for you.</p>
+          <p>From a simple chocolate cake for a family evening to a decorated centrepiece for a wedding, we bake each one for the occasion it's made for, and bring it to your door.</p>
+          <ul class="facts">
+            <li><strong>Baked to order</strong> for your date</li>
+            <li><strong>Delivery</strong> within Dhaka city</li>
+            <li><strong>Custom designs</strong> from your idea or photo</li>
+          </ul>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // Sidebar functionality
-        function openSidebar() {
-            document.getElementById('sidebar').classList.add('active');
-            document.getElementById('sidebarOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    <!-- CONTACT -->
+    <section class="contact wrap" id="contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle" class="section-title">Order your cake</h2>
+      <p class="contact-lead">Call, WhatsApp or message us on Facebook. Delivery is available within Dhaka city.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="tel:+8801670236621">
+          <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span>
+          <span class="cl">Call</span>
+          <span class="cv">01670-236621</span>
+        </a>
+        <a class="contact-card" href="https://wa.me/8801670236621" target="_blank" rel="noopener">
+          <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></svg></span>
+          <span class="cl">WhatsApp</span>
+          <span class="cv">01670-236621</span>
+        </a>
+        <a class="contact-card" href="https://www.facebook.com/zhcake" target="_blank" rel="noopener">
+          <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9Z"/></svg></span>
+          <span class="cl">Facebook</span>
+          <span class="cv">fb.me/zhcake</span>
+        </a>
+      </div>
+    </section>
+  </main>
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('sidebarOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-brand">Zaheen's Cake</p>
+      <p>Homemade cakes, delivered within Dhaka city. Call <a href="tel:+8801670236621">01670-236621</a></p>
+      <p class="small">© <span id="year">2026</span> Zaheen's Cake. Photos are our own work — please don't reuse them without permission.</p>
+    </div>
+  </footer>
 
-        // Close sidebar on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeSidebar();
-            }
-        });
+  <!-- Sticky order bar for phones -->
+  <div class="mobile-bar" aria-label="Quick order">
+    <a href="tel:+8801670236621">Call</a>
+    <a href="https://wa.me/8801670236621" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://m.me/zhcake" target="_blank" rel="noopener">Messenger</a>
+  </div>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Cake photo" hidden>
+    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+    <figure class="lb-figure">
+      <img id="lbImg" alt="">
+      <figcaption>
+        <span id="lbCaption"></span>
+        <a class="btn btn-small" id="lbOrder" href="#" target="_blank" rel="noopener">Order this on WhatsApp</a>
+      </figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
+  </div>
 
-        // Hide nav on scroll down, show on scroll up
-        let lastScroll = 0;
-        const nav = document.querySelector('.top-nav');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll <= 0) {
-                nav.style.transform = 'translateY(0)';
-                return;
-            }
-
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                // Scrolling down
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                // Scrolling up
-                nav.style.transform = 'translateY(0)';
-            }
-
-            lastScroll = currentScroll;
-        });
-    </script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
